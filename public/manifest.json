@@ -1,0 +1,18 @@
+{
+  "name": "LEONIDA // GTA 6 100% Companion",
+  "short_name": "GTA 6 Tracker",
+  "description": "Blazing-fast, mobile-first GTA 6 (Leonida & Vice City) 100% Completion Tracker, Secrets, Collectibles & Cheat Codes Companion for PS5 and Xbox Series X|S.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090B",
+  "theme_color": "#09090B",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

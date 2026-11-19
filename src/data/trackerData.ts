@@ -1,0 +1,1002 @@
+export type Region =
+  | 'Vice City'
+  | 'Leonida Keys'
+  | 'Grassrivers'
+  | 'Port Gellhorn'
+  | 'Ambrosia'
+  | 'Mount Kalaga'
+  | 'Kelly County'
+  | 'Ocean Beach & Starfish Island';
+
+export type CategorySlug =
+  | 'story-missions'
+  | 'strangers-freaks'
+  | 'collectibles'
+  | 'stunt-jumps'
+  | 'random-events'
+  | 'misc-activities'
+  | 'trophies';
+
+export interface TrackerItem {
+  id: string;
+  title: string;
+  category: CategorySlug;
+  region: Region;
+  description: string;
+  locationHint: string;
+  coordinates?: string;
+  isSpoiler: boolean;
+  goldMedalRequirements?: string[];
+  rewards?: string[];
+  prerequisites?: string;
+  difficulty?: 'Easy' | 'Medium' | 'Hard' | 'Extreme';
+  tags?: string[];
+}
+
+export interface CategoryMeta {
+  slug: CategorySlug;
+  title: string;
+  shortTitle: string;
+  subtitle: string;
+  description: string;
+  iconName: string;
+  accentColor: string;
+  badgeText: string;
+}
+
+export type CheatCategory =
+  | 'Player & Health'
+  | 'Wanted Level'
+  | 'Vehicles & Spawns'
+  | 'Weapons & World';
+
+export interface CheatCode {
+  id: string;
+  title: string;
+  category: CheatCategory;
+  description: string;
+  ps5Code: string[];
+  xboxCode: string[];
+  phoneDialCode?: string;
+  disablesAchievements: boolean;
+}
+
+export const CATEGORIES: CategoryMeta[] = [
+  {
+    slug: 'story-missions',
+    title: 'Main Story Missions',
+    shortTitle: 'Story',
+    subtitle: 'Lucia & Jason Campaign with Gold Medal Objectives',
+    description: 'Track all narrative chapter assignments, bank scores, safehouse unlocks, and time-trial gold criteria.',
+    iconName: 'Swords',
+    accentColor: '#EC4899', // Vice Pink
+    badgeText: 'Required for 100%',
+  },
+  {
+    slug: 'strangers-freaks',
+    title: 'Strangers & Freaks',
+    shortTitle: 'Strangers',
+    subtitle: 'Leonida Oddballs, Vice City Influencers & Side Quests',
+    description: 'Encounter viral streaming personalities, swamp hermits, arms dealers, and Florida-style local legends.',
+    iconName: 'Users',
+    accentColor: '#06B6D4', // Sunset Cyan
+    badgeText: 'Side Stories',
+  },
+  {
+    slug: 'collectibles',
+    title: 'Collectibles & Hidden Secrets',
+    shortTitle: 'Collectibles',
+    subtitle: 'Smuggler Caches, Neon Signs, Radio Tapes & USB Leaks',
+    description: 'Find every underwater container, cartel flight recorder, and graffiti wall across Vice City and the bayous.',
+    iconName: 'Compass',
+    accentColor: '#A855F7', // Vice Purple
+    badgeText: 'Discovery',
+  },
+  {
+    slug: 'stunt-jumps',
+    title: 'Unique Stunt Jumps',
+    shortTitle: 'Stunts',
+    subtitle: 'Ramps, Highway Drawbridges & Rooftop Launches',
+    description: 'Land clean stunt landings across Ocean Drive, Port Gellhorn shipyards, and Interstate 95 bridges.',
+    iconName: 'Zap',
+    accentColor: '#F59E0B', // Amber / Gold
+    badgeText: 'Vehicular Skill',
+  },
+  {
+    slug: 'random-events',
+    title: 'Random World Encounters',
+    shortTitle: 'Events',
+    subtitle: 'Dynamic ATM Robberies, Police Chases & Gator Encounters',
+    description: 'Trigger emergent Leonida events that contribute to state completion and unlock unique crew members.',
+    iconName: 'Radio',
+    accentColor: '#10B981', // Emerald
+    badgeText: 'Emergent World',
+  },
+  {
+    slug: 'misc-activities',
+    title: 'Hobbies, Pastimes & Properties',
+    shortTitle: 'Hobbies',
+    subtitle: 'Nightclubs, Airboat Races, Shooting Ranges & Strip Clubs',
+    description: 'Master Florida pastimes, buy luxury safehouses, run chop-shops, and place bets on swamp rallies.',
+    iconName: 'Trophy',
+    accentColor: '#F43F5E', // Rose
+    badgeText: 'Leisure & Empire',
+  },
+  {
+    slug: 'trophies',
+    title: 'Trophies & Achievements',
+    shortTitle: 'Trophies',
+    subtitle: 'PlayStation Platinum & Xbox 1,000G Roadmap',
+    description: 'Full milestone completion checklist from "Welcome to Vice" to the coveted 100% "King of Leonida".',
+    iconName: 'Award',
+    accentColor: '#EAB308', // Yellow
+    badgeText: 'Platinum Roadmap',
+  },
+];
+
+export const REGIONS: Region[] = [
+  'Vice City',
+  'Leonida Keys',
+  'Grassrivers',
+  'Port Gellhorn',
+  'Ambrosia',
+  'Mount Kalaga',
+  'Kelly County',
+  'Ocean Beach & Starfish Island',
+];
+
+// ==========================================
+// SEED TRACKER DATA
+// TODO: Update with verified community data upon game release
+// ==========================================
+export const TRACKER_ITEMS: TrackerItem[] = [
+  // ----------------------------------------
+  // STORY MISSIONS
+  // ----------------------------------------
+  {
+    id: 'story-01',
+    title: 'Prologue: Bail Bond Breakdown',
+    category: 'story-missions',
+    region: 'Kelly County',
+    description: 'Lucia secures her initial probation release while Jason orchestrates the getaway vehicle through flooded dirt tracks.',
+    locationHint: 'Kelly County Correctional Facility rear loading perimeter. Meet Jason near the water tower.',
+    coordinates: '25.7617, -80.1918',
+    isSpoiler: false,
+    goldMedalRequirements: [
+      'Complete within 05:45',
+      'Headshot Accuracy 75%+',
+      'Escape police without taking body armor damage',
+    ],
+    rewards: ['$1,500 Cash', 'Unlocks Safehouse: WCI Motel'],
+    difficulty: 'Easy',
+    tags: ['Lucia', 'Jason', 'Prologue'],
+  },
+  {
+    id: 'story-02',
+    title: 'Neon Horizon',
+    category: 'story-missions',
+    region: 'Ocean Beach & Starfish Island',
+    description: 'Drive the pink Tulip sedan down Ocean Drive to deliver contraband before the sunset curfew sirens sound.',
+    locationHint: 'Vice City Ocean Drive, parked behind the Malibu Club alleyway.',
+    coordinates: '25.7781, -80.1313',
+    isSpoiler: false,
+    goldMedalRequirements: [
+      'Reach the drop-off in under 3 minutes',
+      'Zero vehicle collisions on Ocean Blvd',
+      'Evade radar speed traps',
+    ],
+    rewards: ['Custom Tulip Paintjob', 'Street Cred +20'],
+    difficulty: 'Easy',
+    tags: ['Driving', 'Vice City'],
+  },
+  {
+    id: 'story-03',
+    title: 'Grassriver Shakedown',
+    category: 'story-missions',
+    region: 'Grassrivers',
+    description: 'Infiltrate an illegal swamp moonshine distillery and intercept a rival crew boat shipment.',
+    locationHint: 'Gator Creek Marina dock 4, board the reinforced airboat.',
+    coordinates: '25.8200, -80.4500',
+    isSpoiler: false,
+    goldMedalRequirements: [
+      'Kill 12 enemies with the sawed-off shotgun',
+      'Do not flip or damage the airboat propeller',
+      'Fed a hostile guard to a bull alligator',
+    ],
+    rewards: ['Sawed-off Shotgun Mod', 'Airboat Stash Key'],
+    difficulty: 'Medium',
+    tags: ['Swamp', 'Gunfight'],
+  },
+  {
+    id: 'story-04',
+    title: 'The Port Gellhorn Job',
+    category: 'story-missions',
+    region: 'Port Gellhorn',
+    description: 'Coordinate a two-pronged heist on a commercial freight warehouse guarded by Private Security units.',
+    locationHint: 'Shipping Container Yard B, near the gantry crane control tower.',
+    coordinates: '26.1224, -80.1373',
+    isSpoiler: true,
+    goldMedalRequirements: [
+      'Crack the electronic safe in under 45 seconds',
+      '15 Precision Headshots',
+      'Switch between Jason and Lucia at least 4 times smoothly',
+    ],
+    rewards: ['$45,000 Heist Cut', 'High-Tier Suppressor Blueprint'],
+    difficulty: 'Hard',
+    tags: ['Heist', 'Duo Tactics'],
+  },
+  {
+    id: 'story-05',
+    title: 'Keys To The Kingdom',
+    category: 'story-missions',
+    region: 'Leonida Keys',
+    description: 'High-speed offshore speedboat pursuit targeting a cartel courier yacht traversing the Seven Mile Bridge.',
+    locationHint: 'Islamorada public marina fueling dock.',
+    coordinates: '24.9246, -80.6278',
+    isSpoiler: true,
+    goldMedalRequirements: [
+      'Disable the yacht engines within 2 minutes',
+      'Take zero damage during the bridge shootout',
+      'Survive the Coast Guard chopper with RPG direct hit',
+    ],
+    rewards: ['Offshore Speedboat Access', 'Unlocks Keys Marina Slip'],
+    difficulty: 'Hard',
+    tags: ['Boat Chase', 'Explosions'],
+  },
+  {
+    id: 'story-06',
+    title: 'Vice City Bank & Trust Finale',
+    category: 'story-missions',
+    region: 'Vice City',
+    description: 'The monumental downtown Vice City vault breach combining thermal drill tactics with elevated sniper overwatch.',
+    locationHint: 'Financial District, underground utility tunnel beneath 5th Avenue.',
+    coordinates: '25.7743, -80.1937',
+    isSpoiler: true,
+    goldMedalRequirements: [
+      'Drill the secondary vault door without overheating once',
+      'Recover all bearer bonds ($2.5M bonus cut)',
+      'Escape through subway tunnels undetected for first 2 stars',
+    ],
+    rewards: ['$1,200,000 Net Payout', 'Unlocks Starfish Island Villa Safehouse'],
+    difficulty: 'Extreme',
+    tags: ['Big Score', 'Endgame'],
+  },
+  {
+    id: 'story-07',
+    title: 'Ambrosia Fertilizer Fallout',
+    category: 'story-missions',
+    region: 'Ambrosia',
+    description: 'Sabotage the industrial chemical distribution network powering the region cartel operations.',
+    locationHint: 'Ambrosia Industrial Rail Terminal, silo sector 3.',
+    coordinates: '26.4011, -80.2201',
+    isSpoiler: false,
+    goldMedalRequirements: [
+      'Plant all 4 explosive charges without triggering the alarm',
+      'Escape on the freight train before departure',
+      'Shot accuracy above 80%',
+    ],
+    rewards: ['Heavy Armor Vest', '$18,000 Cash'],
+    difficulty: 'Medium',
+    tags: ['Stealth', 'Industrial'],
+  },
+  {
+    id: 'story-08',
+    title: 'Blood On The Sun',
+    category: 'story-missions',
+    region: 'Mount Kalaga',
+    description: 'Climactic showdown atop the communications array on Mount Kalaga amidst an incoming tropical hurricane.',
+    locationHint: 'Peak observation mast summit road.',
+    coordinates: '26.8900, -80.6500',
+    isSpoiler: true,
+    goldMedalRequirements: [
+      'Disarm the mastermind in single combat',
+      'Complete the mission without using healing items',
+      'Time elapsed under 8m 30s',
+    ],
+    rewards: ['Lucia & Jason Gold Outfit Set', 'Credits Roll'],
+    difficulty: 'Extreme',
+    tags: ['Climax', 'Boss Fight'],
+  },
+
+  // ----------------------------------------
+  // STRANGERS & FREAKS
+  // ----------------------------------------
+  {
+    id: 'stranger-01',
+    title: 'Viral or Die: Live from Ocean Drive',
+    category: 'strangers-freaks',
+    region: 'Ocean Beach & Starfish Island',
+    description: 'Assist a reckless livestreamer pulling disruptive pranks on luxury hotel valet attendants.',
+    locationHint: 'Rooftop infinity pool bar at the Delano Horizon Hotel.',
+    coordinates: '25.7812, -80.1298',
+    isSpoiler: false,
+    goldMedalRequirements: [
+      'Gain 50,000 live viewers before police arrive',
+      'Perform 3 drift turns in the stolen golf cart',
+    ],
+    rewards: ['Streamer Ring Light Trinket', 'Follower Boost'],
+    difficulty: 'Easy',
+    tags: ['Humor', 'Influencer'],
+  },
+  {
+    id: 'stranger-02',
+    title: 'The Gator Whisperer of Grassrivers',
+    category: 'strangers-freaks',
+    region: 'Grassrivers',
+    description: 'Help veteran trapper "Cletus" retrieve his prized pet 14-foot albino alligator from an aggressive poacher camp.',
+    locationHint: 'Rustic stilt shack off Old Sawgrass Canal Route 41.',
+    coordinates: '25.8450, -80.5100',
+    isSpoiler: false,
+    goldMedalRequirements: [
+      'Rescue the albino gator without firing loud gunshots',
+      'Sedate 4 poachers with tranquilizer darts',
+    ],
+    rewards: ['Gator Tooth Necklace (Stamina +10%)', 'Trapper Shop Discount'],
+    difficulty: 'Medium',
+    tags: ['Swamp', 'Wildlife'],
+  },
+  {
+    id: 'stranger-03',
+    title: 'Vice Vinyl Enthusiast',
+    category: 'strangers-freaks',
+    region: 'Vice City',
+    description: 'An eccentric 80s DJ asks you to reclaim his lost master tape cassettes from pawn shops and mobster trunks.',
+    locationHint: 'Little Haiti music shop rear courtyard.',
+    coordinates: '25.8115, -80.1989',
+    isSpoiler: false,
+    goldMedalRequirements: [
+      'Recover all 5 cassettes in one continuous run',
+      'Zero damage to the collector vehicle',
+    ],
+    rewards: ['Custom Retro Synth Radio Station Unlock', '$4,000 Cash'],
+    difficulty: 'Medium',
+    tags: ['Collectibles', 'Music'],
+  },
+  {
+    id: 'stranger-04',
+    title: 'Ambrosia UFO Truthers',
+    category: 'strangers-freaks',
+    region: 'Ambrosia',
+    description: 'Investigate strange nighttime crop circle patterns and glowing orbs over citrus groves.',
+    locationHint: 'Abandoned radio observatory dish at midnight.',
+    coordinates: '26.4250, -80.2450',
+    isSpoiler: true,
+    goldMedalRequirements: [
+      'Photograph 3 anomalous light anomalies between 01:00 and 03:00',
+      'Follow the unmarked government black van without getting spotted',
+    ],
+    rewards: ['Alien T-Shirt Outfit', 'Secret Transponder Tracker'],
+    difficulty: 'Hard',
+    tags: ['Easter Egg', 'Conspiracy'],
+  },
+  {
+    id: 'stranger-05',
+    title: 'Keys Treasure: The 1715 Fleet Gold',
+    category: 'strangers-freaks',
+    region: 'Leonida Keys',
+    description: 'Scuba dive into coral reef galleon wrecks with a local treasure salvager to find Spanish gold doubloons.',
+    locationHint: 'Marathon Key charter boat shack.',
+    coordinates: '24.7136, -81.0904',
+    isSpoiler: false,
+    goldMedalRequirements: [
+      'Retrieve 8 doubloons before oxygen tank reaches 20%',
+      'Avoid triggering hammerhead shark aggression',
+    ],
+    rewards: ['$25,000 Rare Coin Sale', 'Deep Diving Rebreather Suit'],
+    difficulty: 'Hard',
+    tags: ['Underwater', 'Exploration'],
+  },
+  {
+    id: 'stranger-06',
+    title: 'Port Gellhorn Street Drag Syndicate',
+    category: 'strangers-freaks',
+    region: 'Port Gellhorn',
+    description: 'Participate in midnight quarter-mile street drags organized by a clandestine tuned-muscle car club.',
+    locationHint: 'Industrial bypass drag strip behind the oil refinery.',
+    coordinates: '26.1150, -80.1550',
+    isSpoiler: false,
+    goldMedalRequirements: [
+      'Win all 3 heats with manual clutch shifts',
+      'Execute a perfect burnout launch in heat 1',
+    ],
+    rewards: ['Custom Turbo Upgrade Unlock', 'Pink Slip to Opponent Car'],
+    difficulty: 'Medium',
+    tags: ['Racing', 'Tuning'],
+  },
+  {
+    id: 'stranger-07',
+    title: 'The Ex-Cop Private Eye',
+    category: 'strangers-freaks',
+    region: 'Vice City',
+    description: 'Tail a corrupt city councilman into luxury clubs and photograph incriminating bribes without breaking cover.',
+    locationHint: 'Downtown parking garage 4th floor stairwell.',
+    coordinates: '25.7720, -80.1910',
+    isSpoiler: true,
+    goldMedalRequirements: [
+      'Maintain distance between 15m and 35m at all times',
+      'Capture 3 clear face photos during the transaction',
+    ],
+    rewards: ['Police Scanner App on In-Game Phone', '$8,500 Cash'],
+    difficulty: 'Medium',
+    tags: ['Tailing', 'Stealth'],
+  },
+
+  // ----------------------------------------
+  // COLLECTIBLES & HIDDEN SECRETS
+  // ----------------------------------------
+  {
+    id: 'col-01',
+    title: 'Smuggler Caches (01/25): Ocean Drive Reef',
+    category: 'collectibles',
+    region: 'Ocean Beach & Starfish Island',
+    description: 'Submerged waterproof pelican case tied to sunken wreckage buoy 200m off South Beach.',
+    locationHint: 'Dive directly south of the lifeguard stand with the neon flamingo mural.',
+    coordinates: '25.7680, -80.1250',
+    isSpoiler: false,
+    rewards: ['$5,000 Cash', 'Submachine Gun Ammo Clip'],
+    difficulty: 'Easy',
+    tags: ['Underwater', 'Cache'],
+  },
+  {
+    id: 'col-02',
+    title: 'Smuggler Caches (02/25): Sawgrass Mangrove Root',
+    category: 'collectibles',
+    region: 'Grassrivers',
+    description: 'Hidden beneath the roots of an ancient banyan tree accessible only via shallow flat-bottom boat.',
+    locationHint: 'Follow the western channel fork past the abandoned wooden watchtower.',
+    coordinates: '25.8350, -80.4850',
+    isSpoiler: false,
+    rewards: ['$5,000 Cash', 'Rare Weapon Skin: Swamp Camo'],
+    difficulty: 'Medium',
+    tags: ['Swamp', 'Hidden'],
+  },
+  {
+    id: 'col-03',
+    title: 'Leonida Vintage Vinyl (01/15): 80s Synth Funk',
+    category: 'collectibles',
+    region: 'Vice City',
+    description: 'Sealed LP record crate sitting on the rooftop air vents of the retro bowling alley.',
+    locationHint: 'Climb the fire escape ladder in the service alleyway off 8th Street.',
+    coordinates: '25.7795, -80.1380',
+    isSpoiler: false,
+    rewards: ['Unlocks "Vice Wave FM" Exclusive Track'],
+    difficulty: 'Easy',
+    tags: ['Vinyl', 'Rooftop'],
+  },
+  {
+    id: 'col-04',
+    title: 'Leonida Vintage Vinyl (02/15): Latin Freestyle',
+    category: 'collectibles',
+    region: 'Ocean Beach & Starfish Island',
+    description: 'Sitting inside a display cabinet of an abandoned mansion on Starfish Island.',
+    locationHint: 'Ground floor conservatory with broken skylight.',
+    coordinates: '25.7750, -80.1600',
+    isSpoiler: false,
+    rewards: ['Unlocks Classic Track on Car Radio'],
+    difficulty: 'Medium',
+    tags: ['Vinyl', 'Mansion'],
+  },
+  {
+    id: 'col-05',
+    title: 'Cartel Flight Recorder USB (01/10): Everglades Crash',
+    category: 'collectibles',
+    region: 'Grassrivers',
+    description: 'High-tech encrypted black box recovered from a twin-engine prop plane crash fuselage.',
+    locationHint: 'Smoke flare visible at dusk near the mudflat clearing.',
+    coordinates: '25.8600, -80.5200',
+    isSpoiler: true,
+    rewards: ['Unlocks Secret Weapon Blueprint', 'Cartel Lore Audio Log'],
+    difficulty: 'Hard',
+    tags: ['USB', 'Lore'],
+  },
+  {
+    id: 'col-06',
+    title: 'Neon Mural Graffiti Tags (01/20): Flamingo Royale',
+    category: 'collectibles',
+    region: 'Vice City',
+    description: 'Photograph the iconic glowing hot pink flamingo mural in the Arts District with your in-game phone.',
+    locationHint: 'Wynwood-inspired arts warehouse district, exterior north wall.',
+    coordinates: '25.8010, -80.1990',
+    isSpoiler: false,
+    rewards: ['Exclusive Social Club Spray Tag', 'Reputation +15'],
+    difficulty: 'Easy',
+    tags: ['Graffiti', 'Photo'],
+  },
+  {
+    id: 'col-07',
+    title: 'Golden Flamingo Figurines (01/30): Keys Lighthouse',
+    category: 'collectibles',
+    region: 'Leonida Keys',
+    description: 'Miniature solid brass flamingo statue perched on the lighthouse railing gallery.',
+    locationHint: 'Climb to the top viewing deck of Key Largo Historic Lighthouse.',
+    coordinates: '25.0865, -80.4473',
+    isSpoiler: false,
+    rewards: ['Progress toward 100% Collector Trophy', 'Collector Cash Payout'],
+    difficulty: 'Medium',
+    tags: ['Statue', 'Scenic'],
+  },
+  {
+    id: 'col-08',
+    title: 'Sunken Galleon Cannon (01/5): Sombrero Reef',
+    category: 'collectibles',
+    region: 'Leonida Keys',
+    description: 'Examine and tag the historic 18th-century bronze cannon coral formation.',
+    locationHint: 'Deep reef trench 500m west of the Sombrero Key Light buoy.',
+    coordinates: '24.6270, -81.1110',
+    isSpoiler: false,
+    rewards: ['Historical Landmark Badge', '$7,500 Discovery Bounty'],
+    difficulty: 'Hard',
+    tags: ['Diving', 'Historic'],
+  },
+
+  // ----------------------------------------
+  // UNIQUE STUNT JUMPS
+  // ----------------------------------------
+  {
+    id: 'stunt-01',
+    title: 'Ocean Beach Boardwalk Rooftop Launch',
+    category: 'stunt-jumps',
+    region: 'Ocean Beach & Starfish Island',
+    description: 'Hit the wooden lifeguard access ramp at 90+ MPH on a sports bike and clear the boardwalk restaurant terrace.',
+    locationHint: 'Ocean Drive southern cul-de-sac heading north towards the Lummus Park pavilion.',
+    coordinates: '25.7725, -80.1305',
+    isSpoiler: false,
+    rewards: ['Stunt Rating: 5 Stars', '$1,000 Cash'],
+    difficulty: 'Medium',
+    tags: ['Bike Recommended', 'Speed'],
+  },
+  {
+    id: 'stunt-02',
+    title: 'Venetian Causeway Drawbridge Gap',
+    category: 'stunt-jumps',
+    region: 'Vice City',
+    description: 'Launch across the opened bascule drawbridge span while the warning sirens are flashing.',
+    locationHint: 'Venetian Causeway center channel crossing between Mainland and Beach.',
+    coordinates: '25.7900, -80.1600',
+    isSpoiler: false,
+    rewards: ['Stunt Rating: Extreme', 'Adrenaline Boost Perk'],
+    difficulty: 'Hard',
+    tags: ['Drawbridge', 'Cinematic'],
+  },
+  {
+    id: 'stunt-03',
+    title: 'Port Gellhorn Cargo Container Leap',
+    category: 'stunt-jumps',
+    region: 'Port Gellhorn',
+    description: 'Utilize an inclined steel loading ramp to leap over two stacked shipping containers into the empty lot.',
+    locationHint: 'Terminal 3 loading gate, align vehicle with the yellow crane rail.',
+    coordinates: '26.1180, -80.1420',
+    isSpoiler: false,
+    rewards: ['Stunt Rating: 4 Stars', 'Vehicle Handling XP'],
+    difficulty: 'Medium',
+    tags: ['Precision', 'Muscle Car'],
+  },
+  {
+    id: 'stunt-04',
+    title: 'Kelly County Billboard Crash',
+    category: 'stunt-jumps',
+    region: 'Kelly County',
+    description: 'Launch off a dirt earthwork berm to crash directly through an oversized "Visit Leonida" neon billboard.',
+    locationHint: 'Interstate highway off-ramp exit 12 embankment.',
+    coordinates: '25.9200, -80.3500',
+    isSpoiler: false,
+    rewards: ['Destruction Bonus', 'Unlocks Secret Photo Moment'],
+    difficulty: 'Hard',
+    tags: ['Destruction', 'Airtime'],
+  },
+  {
+    id: 'stunt-05',
+    title: 'Mount Kalaga Quarry Drop',
+    category: 'stunt-jumps',
+    region: 'Mount Kalaga',
+    description: 'High-altitude cliff ramp leap over an active rock-crusher pit with a 200-foot vertical drop into soft tailings.',
+    locationHint: 'North rim gravel trail above the main excavator pit.',
+    coordinates: '26.8750, -80.6300',
+    isSpoiler: false,
+    rewards: ['Parachute / In-Vehicle Survival Badge', '$2,500 Cash'],
+    difficulty: 'Extreme',
+    tags: ['Extreme', 'Vertigo'],
+  },
+  {
+    id: 'stunt-06',
+    title: 'Seven Mile Bridge Broken Trestle',
+    category: 'stunt-jumps',
+    region: 'Leonida Keys',
+    description: 'Full-throttle jump spanning the 80-foot gap in the abandoned historic railway bridge.',
+    locationHint: 'Old Overseas Highway spur adjacent to Pigeon Key.',
+    coordinates: '24.7050, -81.1550',
+    isSpoiler: false,
+    rewards: ['Keys Daredevil Trophy Progress', 'Supercar Nitro Refill'],
+    difficulty: 'Extreme',
+    tags: ['Iconic', 'Max Speed'],
+  },
+
+  // ----------------------------------------
+  // RANDOM WORLD ENCOUNTERS
+  // ----------------------------------------
+  {
+    id: 'rand-01',
+    title: 'Armored Truck Deposit Ambush',
+    category: 'random-events',
+    region: 'Vice City',
+    description: 'Gruppe Sechs guards transferring cash cassettes at a convenience store ATM. Blow the rear doors with sticky bombs.',
+    locationHint: 'Spawns periodically near the 24/7 Supermarket on Washington Ave.',
+    coordinates: '25.7850, -80.1330',
+    isSpoiler: false,
+    rewards: ['$10,000 - $35,000 Cash Grab', 'Instant 3-Star Wanted Level'],
+    difficulty: 'Medium',
+    tags: ['Cash', 'Shootout'],
+  },
+  {
+    id: 'rand-02',
+    title: 'Gator in the Swimming Pool',
+    category: 'random-events',
+    region: 'Ocean Beach & Starfish Island',
+    description: 'A panicked suburban homeowner asks you to handle an aggressive 11-foot alligator swimming in their luxury pool.',
+    locationHint: 'Suburban cul-de-sac mansion behind Starfish Country Club.',
+    coordinates: '25.7770, -80.1650',
+    isSpoiler: false,
+    rewards: ['Homeowner Tip $2,000', 'Unique Florida Man Headline'],
+    difficulty: 'Easy',
+    tags: ['Wildlife', 'Florida Man'],
+  },
+  {
+    id: 'rand-03',
+    title: 'Bayside Drug Deal Hijack',
+    category: 'random-events',
+    region: 'Port Gellhorn',
+    description: 'Two rival street gangs conducting a midnight contraband handover under the elevated highway overpass.',
+    locationHint: 'Underpass industrial pillars off Pier 14.',
+    coordinates: '26.1110, -80.1490',
+    isSpoiler: false,
+    rewards: ['Contraband Package ($15,000)', 'Rare Heavy Revolver'],
+    difficulty: 'Hard',
+    tags: ['Combat', 'Loot'],
+  },
+  {
+    id: 'rand-04',
+    title: 'Stranded Keys Motorist Scam',
+    category: 'random-events',
+    region: 'Leonida Keys',
+    description: 'A broken-down luxury convertible by the side of the road with a driver waving for help—revealing an ambush crew.',
+    locationHint: 'Overseas Highway mile marker 44 shoulder pull-off.',
+    coordinates: '24.7900, -80.9500',
+    isSpoiler: false,
+    rewards: ['Take their ambush vehicle', 'Self-Defense Reward'],
+    difficulty: 'Medium',
+    tags: ['Ambush', 'Trap'],
+  },
+  {
+    id: 'rand-05',
+    title: 'Leonida Wildlife Sanctuary Poachers',
+    category: 'random-events',
+    region: 'Grassrivers',
+    description: 'Catch illegal bird and reptile poachers setting wire snares in protected national wetland reserves.',
+    locationHint: 'Trailhead wooden boardwalk near Cypress Swamp Park.',
+    coordinates: '25.8150, -80.4950',
+    isSpoiler: false,
+    rewards: ['Park Ranger Honorific', 'Ranger Station Armory Access'],
+    difficulty: 'Easy',
+    tags: ['Ranger', 'Swamp'],
+  },
+  {
+    id: 'rand-06',
+    title: 'Yacht Party SOS',
+    category: 'random-events',
+    region: 'Ocean Beach & Starfish Island',
+    description: 'Red distress flare fired from a luxury cruiser anchored 400m offshore with a pirate boarding crew.',
+    locationHint: 'Biscayne Bay open water east of Starfish Island.',
+    coordinates: '25.7720, -80.1510',
+    isSpoiler: true,
+    rewards: ['$50,000 High Roller Gratuity', 'VIP Club Pass'],
+    difficulty: 'Hard',
+    tags: ['Offshore', 'Rescue'],
+  },
+
+  // ----------------------------------------
+  // HOBBIES, PASTIMES & PROPERTIES
+  // ----------------------------------------
+  {
+    id: 'misc-01',
+    title: 'Purchase Safehouse: Ocean Drive Penthouse',
+    category: 'misc-activities',
+    region: 'Ocean Beach & Starfish Island',
+    description: 'Acquire the premier art-deco duplex penthouse overlooking the ocean with a 10-car underground garage.',
+    locationHint: 'Dynasty 8 Executive Real Estate terminal on your in-game smartphone.',
+    coordinates: '25.7820, -80.1300',
+    isSpoiler: false,
+    rewards: ['Personal Helipad', '10-Car Luxury Garage', 'Wardrobe Customizer'],
+    difficulty: 'Medium',
+    tags: ['Real Estate', 'Luxury'],
+  },
+  {
+    id: 'misc-02',
+    title: 'Master Vice City Strip Club Lap Dances',
+    category: 'misc-activities',
+    region: 'Vice City',
+    description: 'Achieve max affinity meter with all 4 headline dancers at the neon-lit club in Downtown.',
+    locationHint: 'Downtown Vice strip club main entrance with VIP velvet rope.',
+    coordinates: '25.7790, -80.1940',
+    isSpoiler: false,
+    rewards: ['Personal Phone Contacts', 'VIP Lounge Free Entry'],
+    difficulty: 'Easy',
+    tags: ['Nightlife', '100% Req'],
+  },
+  {
+    id: 'misc-03',
+    title: 'Win All 5 Grassrivers Airboat Circuit Races',
+    category: 'misc-activities',
+    region: 'Grassrivers',
+    description: 'Clock the fastest split times across twisting cypress bayou slalom courses in high-powered fan-boats.',
+    locationHint: 'Sawgrass Marina championship race sign-up board.',
+    coordinates: '25.8300, -80.4700',
+    isSpoiler: false,
+    rewards: ['Custom Supercharged Airboat', '$30,000 Prize Pool'],
+    difficulty: 'Hard',
+    tags: ['Racing', 'Boats'],
+  },
+  {
+    id: 'misc-04',
+    title: 'Ammu-Nation Tactical Shooting Range Gold',
+    category: 'misc-activities',
+    region: 'Vice City',
+    description: 'Score gold medal tier in all weapon disciplines: Pistols, SMGs, Shotguns, Assault Rifles, and Heavy Snipers.',
+    locationHint: 'Ammu-Nation flagship store basement shooting range, Little Haiti.',
+    coordinates: '25.8050, -80.1950',
+    isSpoiler: false,
+    rewards: ['Permanent 15% Ammu-Nation Discount', 'Faster Reload Speed'],
+    difficulty: 'Medium',
+    tags: ['Weapons', 'Target Practice'],
+  },
+  {
+    id: 'misc-05',
+    title: 'Deep Sea Sport Fishing Championship',
+    category: 'misc-activities',
+    region: 'Leonida Keys',
+    description: 'Reel in all 6 legendary ocean game fish including the Blue Marlin, Bull Shark, and Giant Tarpon.',
+    locationHint: 'Charter fishing slip at Marathon Key Marina.',
+    coordinates: '24.7100, -81.0850',
+    isSpoiler: false,
+    rewards: ['Mounted Trophy for Safehouse', 'Master Angler Hat'],
+    difficulty: 'Hard',
+    tags: ['Fishing', 'Minigame'],
+  },
+  {
+    id: 'misc-06',
+    title: 'Illegal Chop Shop Vehicle Deliveries (10/10)',
+    category: 'misc-activities',
+    region: 'Port Gellhorn',
+    description: 'Track down and deliver exotic requested sports cars to the Port Gellhorn freight export dock.',
+    locationHint: 'Export chalkboard inside the dock warehouse bay 3.',
+    coordinates: '26.1200, -80.1460',
+    isSpoiler: false,
+    rewards: ['$150,000 Total Payout', 'Import/Export Master Perk'],
+    difficulty: 'Medium',
+    tags: ['Car Theft', 'Empire'],
+  },
+
+  // ----------------------------------------
+  // TROPHIES & ACHIEVEMENTS
+  // ----------------------------------------
+  {
+    id: 'trophy-01',
+    title: 'Welcome to Leonida',
+    category: 'trophies',
+    region: 'Kelly County',
+    description: 'Complete Chapter 1 and establish your first operational safehouse in the state.',
+    locationHint: 'Story progression milestone.',
+    isSpoiler: false,
+    rewards: ['Bronze Trophy / 15G'],
+    difficulty: 'Easy',
+    tags: ['Story', 'Bronze'],
+  },
+  {
+    id: 'trophy-02',
+    title: 'Solid Gold, Baby',
+    category: 'trophies',
+    region: 'Vice City',
+    description: 'Earn 50 Gold Medals across Main Story Missions and Strangers & Freaks objectives.',
+    locationHint: 'Replay missions via the in-game progress menu to fulfill all checkboxes.',
+    isSpoiler: false,
+    rewards: ['Gold Trophy / 50G'],
+    difficulty: 'Extreme',
+    tags: ['Gold Medals', 'Grind'],
+  },
+  {
+    id: 'trophy-03',
+    title: 'High Roller of Vice',
+    category: 'trophies',
+    region: 'Ocean Beach & Starfish Island',
+    description: 'Spend more than $5,000,000 across luxury vehicles, high-end real estate, and custom weapon skins.',
+    locationHint: 'Earn heist cuts and invest in real estate or stock exchanges.',
+    isSpoiler: false,
+    rewards: ['Silver Trophy / 30G'],
+    difficulty: 'Medium',
+    tags: ['Finance', 'Spending'],
+  },
+  {
+    id: 'trophy-04',
+    title: 'Apex Predator of the Glades',
+    category: 'trophies',
+    region: 'Grassrivers',
+    description: 'Survive a close-quarters melee struggle with a 12+ foot alligator and escape without dying.',
+    locationHint: 'Lure an alligator onto muddy bank in Grassrivers without firing a shot.',
+    isSpoiler: false,
+    rewards: ['Bronze Trophy / 20G'],
+    difficulty: 'Medium',
+    tags: ['Wildlife', 'Combat'],
+  },
+  {
+    id: 'trophy-05',
+    title: 'Daredevil of the Keys',
+    category: 'trophies',
+    region: 'Leonida Keys',
+    description: 'Successfully complete all unique stunt jumps located throughout the Leonida Keys chain.',
+    locationHint: 'See Stunt Jumps category for exact ramp locations.',
+    isSpoiler: false,
+    rewards: ['Silver Trophy / 30G'],
+    difficulty: 'Hard',
+    tags: ['Stunts', 'Exploration'],
+  },
+  {
+    id: 'trophy-06',
+    title: 'Vice City Public Enemy #1',
+    category: 'trophies',
+    region: 'Vice City',
+    description: 'Survive a 5-Star Wanted Level for 10 consecutive minutes and successfully lose the cops without dying.',
+    locationHint: 'Stock up on armor, hide in subway tunnels or utilize high-speed offshore boats.',
+    isSpoiler: false,
+    rewards: ['Gold Trophy / 40G'],
+    difficulty: 'Extreme',
+    tags: ['5 Stars', 'Police'],
+  },
+  {
+    id: 'trophy-07',
+    title: 'Kingpin of Leonida (100% Completion)',
+    category: 'trophies',
+    region: 'Vice City',
+    description: 'Achieve 100% Game Completion across all storyline, collectibles, side activities, and random encounters.',
+    locationHint: 'Complete every tracker item in this companion app!',
+    isSpoiler: false,
+    rewards: ['Platinum Trophy / 100G', '100% Secret Easter Egg / Outfit'],
+    difficulty: 'Extreme',
+    tags: ['Platinum', '100%'],
+  },
+];
+
+// ==========================================
+// CHEAT CODES DIRECTORY
+// Visual controller buttons for PS5 & Xbox
+// ==========================================
+export const CHEAT_CODES: CheatCode[] = [
+  {
+    id: 'cheat-01',
+    title: 'Max Health & Armor',
+    category: 'Player & Health',
+    description: 'Instantly restores full health, full body armor, and repairs the vehicle you are currently driving.',
+    ps5Code: ['○', 'L1', '△', 'R2', '✕', '□', '○', '→', '□', 'L1', 'L1', 'L1'],
+    xboxCode: ['B', 'LB', 'Y', 'RT', 'A', 'X', 'B', '→', 'X', 'LB', 'LB', 'LB'],
+    phoneDialCode: '1-999-887-8532 (TURTLE)',
+    disablesAchievements: true,
+  },
+  {
+    id: 'cheat-02',
+    title: 'Invincibility (God Mode - 5 Minutes)',
+    category: 'Player & Health',
+    description: 'Player becomes impervious to all bullet, fire, explosive, and drowning damage for 300 seconds. Must be re-entered.',
+    ps5Code: ['→', '✕', '→', '←', '→', 'R1', '→', '←', '✕', '△'],
+    xboxCode: ['→', 'A', '→', '←', '→', 'RB', '→', '←', 'A', 'Y'],
+    phoneDialCode: '1-999-724-654-5537 (PAINKILLER)',
+    disablesAchievements: true,
+  },
+  {
+    id: 'cheat-03',
+    title: 'All Weapons & Max Ammo',
+    category: 'Weapons & World',
+    description: 'Grants full weapon loadout including Assault Rifle, Sawed-off Shotgun, Micro SMG, Heavy Sniper, Grenades, and RPG with full ammo.',
+    ps5Code: ['△', 'R2', '←', 'L1', '✕', '→', '△', '↓', '□', 'L1', 'L1', 'L1'],
+    xboxCode: ['Y', 'RT', '←', 'LB', 'A', '→', 'Y', '↓', 'X', 'LB', 'LB', 'LB'],
+    phoneDialCode: '1-999-866-587 (TOOLUP)',
+    disablesAchievements: true,
+  },
+  {
+    id: 'cheat-04',
+    title: 'Lower Wanted Level (-1 Star)',
+    category: 'Wanted Level',
+    description: 'Instantly removes one star from your current police pursuit level. Can be tapped repeatedly until clear.',
+    ps5Code: ['R1', 'R1', '○', 'R2', '→', '←', '→', '←', '→', '←'],
+    xboxCode: ['RB', 'RB', 'B', 'RT', '→', '←', '→', '←', '→', '←'],
+    phoneDialCode: '1-999-5299-3787 (LAWYERUP)',
+    disablesAchievements: true,
+  },
+  {
+    id: 'cheat-05',
+    title: 'Raise Wanted Level (+1 Star)',
+    category: 'Wanted Level',
+    description: 'Adds one wanted star to your profile to provoke police response and testing combat tactics.',
+    ps5Code: ['R1', 'R1', '○', 'R2', '←', '→', '←', '→', '←', '→'],
+    xboxCode: ['RB', 'RB', 'B', 'RT', '←', '→', '←', '→', '←', '→'],
+    phoneDialCode: '1-999-3844-872 (FUGITIVE)',
+    disablesAchievements: true,
+  },
+  {
+    id: 'cheat-06',
+    title: 'Spawn Cheetah Supercar',
+    category: 'Vehicles & Spawns',
+    description: 'Spawns a top-tier luxury mid-engine supercar in pristine condition right in front of the player.',
+    ps5Code: ['R2', 'L1', '○', '→', 'L1', 'R1', '→', '←', '○', 'R2'],
+    xboxCode: ['RT', 'LB', 'B', '→', 'LB', 'RB', '→', '←', 'B', 'RT'],
+    phoneDialCode: '1-999-243-3824 (CHEETAH)',
+    disablesAchievements: true,
+  },
+  {
+    id: 'cheat-07',
+    title: 'Spawn Buzzard Attack Chopper',
+    category: 'Vehicles & Spawns',
+    description: 'Spawns a twin-minigun and missile-equipped tactical combat helicopter.',
+    ps5Code: ['○', '○', 'L1', '○', '○', '○', 'L1', 'L2', 'R1', '△', '○', '△'],
+    xboxCode: ['B', 'B', 'LB', 'B', 'B', 'B', 'LB', 'LT', 'RB', 'Y', 'B', 'Y'],
+    phoneDialCode: '1-999-289-9633 (BUZZOFF)',
+    disablesAchievements: true,
+  },
+  {
+    id: 'cheat-08',
+    title: 'Spawn Swamp Airboat',
+    category: 'Vehicles & Spawns',
+    description: 'Spawns a dual-rudder, high-thrust swamp fan-boat ideal for shallow bayous and Grassriver mudflats.',
+    ps5Code: ['L1', 'R1', '△', '○', '✕', '□', '←', '→', 'L2', 'R2'],
+    xboxCode: ['LB', 'RB', 'Y', 'B', 'A', 'X', '←', '→', 'LT', 'RT'],
+    phoneDialCode: '1-999-247-2628 (AIRBOAT)',
+    disablesAchievements: true,
+  },
+  {
+    id: 'cheat-09',
+    title: 'Super Jump (Spring Legs)',
+    category: 'Player & Health',
+    description: 'Hold the jump button to leap 10x higher than normal. Combine with forward momentum to clear buildings.',
+    ps5Code: ['←', '←', '△', '△', '→', '→', '←', '→', '□', 'R1', 'R2'],
+    xboxCode: ['←', '←', 'Y', 'Y', '→', '→', '←', '→', 'X', 'RB', 'RT'],
+    phoneDialCode: '1-999-467-8648 (HOPTOIT)',
+    disablesAchievements: true,
+  },
+  {
+    id: 'cheat-10',
+    title: 'Explosive Melee Attacks',
+    category: 'Weapons & World',
+    description: 'Punches and kicks produce high-impact concussive explosions that send vehicles and enemies flying.',
+    ps5Code: ['→', '←', '✕', '△', 'R1', '○', '○', '○', 'L2'],
+    xboxCode: ['→', '←', 'A', 'Y', 'RB', 'B', 'B', 'B', 'LT'],
+    phoneDialCode: '1-999-468-42637 (HOTHANDS)',
+    disablesAchievements: true,
+  },
+  {
+    id: 'cheat-11',
+    title: 'Slippery Cars (Drift Physics)',
+    category: 'Vehicles & Spawns',
+    description: 'Tires lose nearly all traction, converting every vehicle into an ultra-responsive slide and drift machine.',
+    ps5Code: ['△', 'R1', 'R1', '←', 'R1', 'L1', 'R2', 'L1'],
+    xboxCode: ['Y', 'RB', 'RB', '←', 'RB', 'LB', 'RT', 'LB'],
+    phoneDialCode: '1-999-766-9329 (SNOWDAY)',
+    disablesAchievements: true,
+  },
+  {
+    id: 'cheat-12',
+    title: 'Slow-Motion Aiming (3 Levels)',
+    category: 'Weapons & World',
+    description: 'Aiming down weapon sights activates cinematic bullet time. Enter up to 4 times for slower speeds (4th resets).',
+    ps5Code: ['□', 'L2', 'R1', '△', '←', '□', 'L2', '→', '✕'],
+    xboxCode: ['X', 'LT', 'RB', 'Y', '←', 'X', 'LT', '→', 'A'],
+    phoneDialCode: '1-999-332-3393 (DEADEYE)',
+    disablesAchievements: true,
+  },
+  {
+    id: 'cheat-13',
+    title: 'Tropical Hurricane Weather',
+    category: 'Weapons & World',
+    description: 'Cycles immediate atmospheric weather through clear, thunderstorm, vice neon sunset, and violent tropical hurricane.',
+    ps5Code: ['R2', '✕', 'L1', 'L1', 'L2', 'L2', 'L2', '□'],
+    xboxCode: ['RT', 'A', 'LB', 'LB', 'LT', 'LT', 'LT', 'X'],
+    phoneDialCode: '1-999-625-348-7246 (MAKEITRAIN)',
+    disablesAchievements: true,
+  },
+];
